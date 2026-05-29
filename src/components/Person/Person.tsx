@@ -2,6 +2,7 @@ import React from 'react';
 import { Person as PersonType } from '../../types';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
+import { PersonLink } from '../PersonLink';
 
 interface PersonProps {
   person: PersonType;
@@ -32,19 +33,22 @@ export const Person: React.FC<PersonProps> = ({ person, active }) => {
       <td>{person.died}</td>
       <td>
         {person.mother ? (
-          <Link
-            to={`/people/${person.mother.slug}`}
-            className="has-text-danger"
-          >
-            {person.mother.name}
-          </Link>
+          <PersonLink
+            name={person.mother.name}
+            sex={person.mother.sex}
+            to={person.mother.slug}
+          />
         ) : (
           person.motherName || '-'
         )}
       </td>
       <td>
         {person.father ? (
-          <Link to={`/people/${person.father.slug}`}>{person.father.name}</Link>
+          <PersonLink
+            name={person.father.name}
+            sex={person.father.sex}
+            to={person.father.slug}
+          />
         ) : (
           person.fatherName || '-'
         )}
