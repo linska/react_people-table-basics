@@ -1,6 +1,5 @@
 import React from 'react';
 import { Person as PersonType } from '../../types';
-import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import { PersonLink } from '../PersonLink';
 
@@ -18,14 +17,7 @@ export const Person: React.FC<PersonProps> = ({ person, active }) => {
       })}
     >
       <td>
-        <Link
-          to={`/people/${person.slug}`}
-          className={cn({
-            'has-text-danger': person.sex === 'f',
-          })}
-        >
-          {person.name}
-        </Link>
+        <PersonLink person={person} />
       </td>
 
       <td>{person.sex}</td>
